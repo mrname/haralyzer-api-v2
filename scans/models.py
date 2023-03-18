@@ -25,14 +25,12 @@ class Scan(models.Model):
 
     status = models.TextField(choices=ScanStatus.choices, default=ScanStatus.PENDING, editable=False)
 
-    # TODO - It doesn't really NEED to be a file. We could always just store it
-    # in a JSON blob as well (its just a JSON file). Using file based storage
-    # for now to keep the database trim, and also allow users a downloadable
-    # URL as a feature
-    har_file = models.FileField(editable=False)
 
-    # The rest of the scan stuff will be dynamically generated (probably in the
-    # serializer) using haralyzer. Technically, we might want to store some of
-    # this data directly into the DB as well for faster searching/filtering
-    # (like storing the total load time for example, allowing users to search
-    # for scans that took over X MS).
+class ScanResult(models.Model):
+    scan = models.OneToOneField(
+        Scan,
+        on_delete=models.CASCADE,
+        primary_key=True,
+        related_name='result',
+    )
+    raw_results = models.JSONField()

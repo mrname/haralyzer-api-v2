@@ -1,3 +1,6 @@
 har_output/
 db.sqlite3
 *__pycache__*
+bmp.log
+server.log
+*.swp
