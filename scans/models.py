@@ -27,10 +27,40 @@ class Scan(models.Model):
 
 
 class ScanResult(models.Model):
+    # Attributes that are mapped directly from a HarPage to the model by name
+    _haralyzer_defined_attrs = (
+        'initial_load_time', 'html_load_time', 'image_load_time', 'css_load_time',
+        'js_load_time', 'audio_load_time', 'video_load_time', 'image_size',
+        'css_size', 'text_size', 'js_size', 'audio_size', 'video_size',
+    )
+
     scan = models.OneToOneField(
         Scan,
         on_delete=models.CASCADE,
         primary_key=True,
         related_name='result',
     )
+
+    # Store the raw results, so that we could "backfill" new properties in the
+    # future if desired.
     raw_results = models.JSONField()
+
+    # Store some denormalized data about the results. While we COULD calculate
+    # such things dynamically at runtime, it makes sense to put them in the DB
+    # to allow for fast user filtering
+    total_load_time = models.IntegerField()
+    initial_load_time = models.IntegerField()
+    image_load_time = models.IntegerField()
+    css_load_time = models.IntegerField()
+    js_load_time = models.IntegerField()
+    audio_load_time = models.IntegerField()
+    video_load_time = models.IntegerField()
+    html_load_time = models.IntegerField()
+
+    total_size = models.IntegerField()
+    image_size = models.IntegerField()
+    css_size = models.IntegerField()
+    text_size = models.IntegerField()
+    js_size = models.IntegerField()
+    audio_size = models.IntegerField()
+    video_size = models.IntegerField()
