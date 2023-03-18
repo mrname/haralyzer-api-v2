@@ -1,3 +1,5 @@
+from urllib.parse import urlparse
+
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -23,8 +25,17 @@ class Scan(models.Model):
     # TODO - max length is only 200, should we up it?
     url = models.URLField()
 
+    # De-normalized from the URL for fast filtering
+    hostname = models.TextField(editable=False)
+
+    # TODO - Unused, but will be important when we move the scanning to
+    # background task
     status = models.TextField(choices=ScanStatus.choices, default=ScanStatus.PENDING, editable=False)
 
+    def save(self, *args, **kwargs):
+        parsed_url = urlparse(self.url)
+        self.hostname = parsed_url.hostname
+        return super().save(*args, **kwargs)
 
 class ScanResult(models.Model):
     # Attributes that are mapped directly from a HarPage to the model by name

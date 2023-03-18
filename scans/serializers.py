@@ -14,7 +14,7 @@ class ScanSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Scan
-        fields = ('name', 'created', 'url', 'result')
+        fields = ('name', 'hostname', 'created', 'url', 'result')
 
     def create(self, validated_data):
         obj = Scan.objects.create(**validated_data)
@@ -33,9 +33,9 @@ class ScanSerializer(serializers.ModelSerializer):
         # Start off with a few oddball attrs whose names do not match
         scan_result_details = {
             # A bit of a hack, we SHOULD be able to use page_load_time property
-            # but it does not like the HAR we are producing
-            #'total_load_time': len(har_parser.create_asset_timeline(page.entries)),
-            'total_load_time': 0,
+            # but it does not like the HAR we are producing, as it leaves
+            # pageTimings empty
+            'total_load_time': len(har_parser.create_asset_timeline(page.entries)),
             'total_size': page.page_size
         }
 
