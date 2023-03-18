@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ./app.py:/src/app.py
-      - ./har_output:/output
+      - ./:/src/
     stdin_open: true
     tty: true
+    command: ["tail", "-f", "/dev/null"]
