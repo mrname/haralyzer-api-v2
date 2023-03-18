@@ -4,7 +4,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('scans', '0004_remove_scan_har_file_scanresult_audio_load_time_and_more'),
     ]

@@ -4,10 +4,12 @@ from rest_framework import serializers
 from .controllers.har import create_har_data
 from .models import Scan, ScanResult
 
+
 class ScanResultSerializer(serializers.ModelSerializer):
     class Meta:
         model = ScanResult
         fields = '__all__'
+
 
 class ScanSerializer(serializers.ModelSerializer):
     result = ScanResultSerializer(read_only=True)
@@ -36,13 +38,15 @@ class ScanSerializer(serializers.ModelSerializer):
             # but it does not like the HAR we are producing, as it leaves
             # pageTimings empty
             'total_load_time': len(har_parser.create_asset_timeline(page.entries)),
-            'total_size': page.page_size
+            'total_size': page.page_size,
         }
 
         # The rest can be mapped directly
         for attr_name in ScanResult._haralyzer_defined_attrs:
             scan_result_details[attr_name] = getattr(page, attr_name)
 
-        scan_result_obj = ScanResult.objects.create(scan=obj, raw_results=results, **scan_result_details)
+        scan_result_obj = ScanResult.objects.create(
+            scan=obj, raw_results=results, **scan_result_details
+        )
 
         return obj

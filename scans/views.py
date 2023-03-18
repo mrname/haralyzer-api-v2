@@ -5,6 +5,7 @@ from rest_framework import viewsets
 from .models import Scan
 from .serializers import ScanSerializer
 
+
 class ScanFilter(filters.FilterSet):
     class Meta:
         model = Scan
@@ -12,6 +13,7 @@ class ScanFilter(filters.FilterSet):
             'hostname': ['exact'],
             'result__total_load_time': ['lte', 'gte'],
         }
+
 
 class ScanViewSet(viewsets.ModelViewSet):
     queryset = Scan.objects.all().order_by('-created')

@@ -5,7 +5,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('scans', '0002_scan_name_alter_scan_har_file_alter_scan_status'),
     ]
@@ -14,7 +13,15 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ScanResult',
             fields=[
-                ('scan', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to='scans.scan')),
+                (
+                    'scan',
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        primary_key=True,
+                        serialize=False,
+                        to='scans.scan',
+                    ),
+                ),
                 ('raw_results', models.JSONField()),
             ],
         ),

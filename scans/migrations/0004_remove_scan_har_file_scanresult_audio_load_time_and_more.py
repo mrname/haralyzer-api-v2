@@ -5,7 +5,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('scans', '0003_scanresult'),
     ]
@@ -114,6 +113,12 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='scanresult',
             name='scan',
-            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, related_name='result', serialize=False, to='scans.scan'),
+            field=models.OneToOneField(
+                on_delete=django.db.models.deletion.CASCADE,
+                primary_key=True,
+                related_name='result',
+                serialize=False,
+                to='scans.scan',
+            ),
         ),
     ]

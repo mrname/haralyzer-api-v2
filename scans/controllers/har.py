@@ -1,13 +1,14 @@
 from browsermobproxy import Server
 from selenium import webdriver
 
+
 def create_har_data(url, name=None) -> dict:
     """
     Given a single URL, this function will generate a dict of raw HAR data
     using BrowserMobProxy and Selenium
     """
     # Necessary, or HTTPS will not work at all
-    webdriver.DesiredCapabilities.CHROME['acceptSslCerts']=True
+    webdriver.DesiredCapabilities.CHROME['acceptSslCerts'] = True
 
     server = Server('/browsermob-proxy-2.1.4/bin/browsermob-proxy')
     server.start()

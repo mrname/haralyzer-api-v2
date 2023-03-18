@@ -1,3 +1,6 @@
+[tool.black]
+skip_string_normalization = "True"
+
 [tool.poetry]
 name = "new-haralyzer-api"
 version = "0.1.0"

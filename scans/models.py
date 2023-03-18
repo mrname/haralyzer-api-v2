@@ -8,6 +8,7 @@ class Scan(models.Model):
     """
     Represents a single "Scan" of a single URL.
     """
+
     class ScanStatus(models.TextChoices):
         # The scan has not started yet
         PENDING = 'pending', _('Pending')
@@ -30,19 +31,32 @@ class Scan(models.Model):
 
     # TODO - Unused, but will be important when we move the scanning to
     # background task
-    status = models.TextField(choices=ScanStatus.choices, default=ScanStatus.PENDING, editable=False)
+    status = models.TextField(
+        choices=ScanStatus.choices, default=ScanStatus.PENDING, editable=False
+    )
 
     def save(self, *args, **kwargs):
         parsed_url = urlparse(self.url)
         self.hostname = parsed_url.hostname
         return super().save(*args, **kwargs)
 
+
 class ScanResult(models.Model):
     # Attributes that are mapped directly from a HarPage to the model by name
     _haralyzer_defined_attrs = (
-        'initial_load_time', 'html_load_time', 'image_load_time', 'css_load_time',
-        'js_load_time', 'audio_load_time', 'video_load_time', 'image_size',
-        'css_size', 'text_size', 'js_size', 'audio_size', 'video_size',
+        'initial_load_time',
+        'html_load_time',
+        'image_load_time',
+        'css_load_time',
+        'js_load_time',
+        'audio_load_time',
+        'video_load_time',
+        'image_size',
+        'css_size',
+        'text_size',
+        'js_size',
+        'audio_size',
+        'video_size',
     )
 
     scan = models.OneToOneField(

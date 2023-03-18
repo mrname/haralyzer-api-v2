@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('scans', '0001_initial'),
     ]
@@ -24,6 +23,15 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='scan',
             name='status',
-            field=models.TextField(choices=[('pending', 'Pending'), ('running', 'Running'), ('success', 'Success'), ('error', 'Error')], default='pending', editable=False),
+            field=models.TextField(
+                choices=[
+                    ('pending', 'Pending'),
+                    ('running', 'Running'),
+                    ('success', 'Success'),
+                    ('error', 'Error'),
+                ],
+                default='pending',
+                editable=False,
+            ),
         ),
     ]

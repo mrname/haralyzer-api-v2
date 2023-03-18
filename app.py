@@ -2,7 +2,7 @@ from browsermobproxy import Server
 from selenium import webdriver
 
 # Necessary, or HTTPS will not work at all
-webdriver.DesiredCapabilities.CHROME['acceptSslCerts']=True
+webdriver.DesiredCapabilities.CHROME['acceptSslCerts'] = True
 
 server = Server('/browsermob-proxy-2.1.4/bin/browsermob-proxy')
 server.start()
@@ -21,6 +21,6 @@ driver = webdriver.Chrome(options=chrome_options)
 
 proxy.new_har("default")
 driver.get("https://news.ycombinator.com")
-print(proxy.har) # returns a HAR JSON blob
+print(proxy.har)  # returns a HAR JSON blob
 
 driver.quit()
