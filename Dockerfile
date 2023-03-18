@@ -1,5 +1,6 @@
 FROM python:3.10
 
+
 RUN apt-get update -y
 RUN apt-get install -y wget unzip
 
@@ -25,6 +26,8 @@ RUN wget https://github.com/lightbody/browsermob-proxy/releases/download/browser
     && unzip chromedriver_linux64.zip \
     && chmod +x chromedriver \
 	&& cp chromedriver /usr/local/bin/
+
+ENV PYTHONDONTWRITEBYTECODE=1
 
 WORKDIR /src/
 
