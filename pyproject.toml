@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "new-haralyzer-api"
+version = "0.1.0"
+description = ""
+authors = ["mrname <justincrown1@gmail.com>"]
+readme = "README.md"
+packages = [{include = "new_haralyzer_api"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+browsermob-proxy = "^0.8.0"
+selenium = "^4.8.2"
+haralyzer = "^2.2.0"
+django = "^4.1.7"
+djangorestframework = "^3.14.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
