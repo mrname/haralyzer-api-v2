@@ -6,23 +6,23 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('scans', '0002_scan_name_alter_scan_har_file_alter_scan_status'),
+        ("scans", "0002_scan_name_alter_scan_har_file_alter_scan_status"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='ScanResult',
+            name="ScanResult",
             fields=[
                 (
-                    'scan',
+                    "scan",
                     models.OneToOneField(
                         on_delete=django.db.models.deletion.CASCADE,
                         primary_key=True,
                         serialize=False,
-                        to='scans.scan',
+                        to="scans.scan",
                     ),
                 ),
-                ('raw_results', models.JSONField()),
+                ("raw_results", models.JSONField()),
             ],
         ),
     ]

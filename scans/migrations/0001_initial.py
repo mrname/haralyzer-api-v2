@@ -10,32 +10,32 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Scan',
+            name="Scan",
             fields=[
                 (
-                    'id',
+                    "id",
                     models.BigAutoField(
                         auto_created=True,
                         primary_key=True,
                         serialize=False,
-                        verbose_name='ID',
+                        verbose_name="ID",
                     ),
                 ),
-                ('created', models.DateTimeField(auto_now_add=True)),
-                ('url', models.URLField()),
+                ("created", models.DateTimeField(auto_now_add=True)),
+                ("url", models.URLField()),
                 (
-                    'status',
+                    "status",
                     models.TextField(
                         choices=[
-                            ('pending', 'Pending'),
-                            ('running', 'Running'),
-                            ('success', 'Success'),
-                            ('error', 'Error'),
+                            ("pending", "Pending"),
+                            ("running", "Running"),
+                            ("success", "Success"),
+                            ("error", "Error"),
                         ],
-                        default='pending',
+                        default="pending",
                     ),
                 ),
-                ('har_file', models.FileField(upload_to='')),
+                ("har_file", models.FileField(upload_to="")),
             ],
         ),
     ]

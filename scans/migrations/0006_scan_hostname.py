@@ -5,14 +5,14 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('scans', '0005_remove_scanresult_content_load_time'),
+        ("scans", "0005_remove_scanresult_content_load_time"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='scan',
-            name='hostname',
-            field=models.TextField(default='', editable=False),
+            model_name="scan",
+            name="hostname",
+            field=models.TextField(default="", editable=False),
             preserve_default=False,
         ),
     ]

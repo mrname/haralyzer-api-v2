@@ -10,12 +10,12 @@ class ScanFilter(filters.FilterSet):
     class Meta:
         model = Scan
         fields = {
-            'hostname': ['exact'],
-            'result__total_load_time': ['lte', 'gte'],
+            "hostname": ["exact"],
+            "result__total_load_time": ["lte", "gte"],
         }
 
 
 class ScanViewSet(viewsets.ModelViewSet):
-    queryset = Scan.objects.all().order_by('-created')
+    queryset = Scan.objects.all().order_by("-created")
     serializer_class = ScanSerializer
     filterset_class = ScanFilter

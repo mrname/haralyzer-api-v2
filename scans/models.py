@@ -11,13 +11,13 @@ class Scan(models.Model):
 
     class ScanStatus(models.TextChoices):
         # The scan has not started yet
-        PENDING = 'pending', _('Pending')
+        PENDING = "pending", _("Pending")
         # The scan is currently running
-        RUNNING = 'running', _('Running')
+        RUNNING = "running", _("Running")
         # The scan has succeeded
-        SUCCESS = 'success', _('Success')
+        SUCCESS = "success", _("Success")
         # The scan failed
-        ERROR = 'error', _('Error')
+        ERROR = "error", _("Error")
 
     name = models.TextField()
 
@@ -44,26 +44,26 @@ class Scan(models.Model):
 class ScanResult(models.Model):
     # Attributes that are mapped directly from a HarPage to the model by name
     _haralyzer_defined_attrs = (
-        'initial_load_time',
-        'html_load_time',
-        'image_load_time',
-        'css_load_time',
-        'js_load_time',
-        'audio_load_time',
-        'video_load_time',
-        'image_size',
-        'css_size',
-        'text_size',
-        'js_size',
-        'audio_size',
-        'video_size',
+        "initial_load_time",
+        "html_load_time",
+        "image_load_time",
+        "css_load_time",
+        "js_load_time",
+        "audio_load_time",
+        "video_load_time",
+        "image_size",
+        "css_size",
+        "text_size",
+        "js_size",
+        "audio_size",
+        "video_size",
     )
 
     scan = models.OneToOneField(
         Scan,
         on_delete=models.CASCADE,
         primary_key=True,
-        related_name='result',
+        related_name="result",
     )
 
     # Store the raw results, so that we could "backfill" new properties in the

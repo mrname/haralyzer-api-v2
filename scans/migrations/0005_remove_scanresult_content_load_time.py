@@ -5,12 +5,12 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('scans', '0004_remove_scan_har_file_scanresult_audio_load_time_and_more'),
+        ("scans", "0004_remove_scan_har_file_scanresult_audio_load_time_and_more"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='scanresult',
-            name='content_load_time',
+            model_name="scanresult",
+            name="content_load_time",
         ),
     ]
