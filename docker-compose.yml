@@ -1,0 +1,18 @@
+version: "3"
+services:
+  bmp:
+    build:
+      context: ./services/bmp
+      dockerfile: Dockerfile
+    ports:
+      - "9090:9090"
+      - "39500-39999:39500-39999"
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./app.py:/src/app.py
+      - ./har_output:/output
+    stdin_open: true
+    tty: true
